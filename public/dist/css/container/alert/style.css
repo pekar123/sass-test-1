@@ -1,0 +1,44 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+main {
+  display: grid;
+  padding: 16px;
+}
+
+.form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid #ddd;
+  padding: 8px;
+  gap: 32px;
+}
+.form__info {
+  display: grid;
+  gap: 16px;
+}
+.form__title {
+  font-size: 20px;
+}
+.form__active {
+  display: flex;
+  justify-content: flex-end;
+  max-width: 100%;
+}
+.form__button {
+  display: flex;
+  align-items: center;
+  background-color: rgb(31, 92, 224);
+  padding: 8px;
+  border-radius: 10px;
+  color: #ffffff;
+  text-decoration: none;
+}
+.form__button:hover {
+  background-color: white;
+  border: 1px solid rgb(31, 92, 224);
+  color: black;
+}
+
+/*# sourceMappingURL=style.css.map */
