@@ -1,3 +1,68 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
 
+.main {
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.header__title {
+  font-size: 24px;
+  color: rgb(31, 92, 224);
+}
+.header__click {
+  text-decoration: none;
+  background-color: rgb(31, 92, 224);
+  border: 1px solid rgb(31, 92, 224);
+  padding: 4px;
+  border-radius: 8px;
+  color: white;
+}
+.header__click:hover {
+  background-color: white;
+  color: rgb(31, 92, 224);
+  border-radius: 1px solid rgb(31, 92, 224);
+}
+
+.form {
+  display: grid;
+}
+.form__title {
+  font-size: 20px;
+}
+.form__description {
+  font-size: 16px;
+}
+.form__id {
+  font-size: 16px;
+  color: gray;
+}
+.form__list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 8px;
+}
+.form__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid gray;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+}
+.form__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
 
 /*# sourceMappingURL=style.css.map */

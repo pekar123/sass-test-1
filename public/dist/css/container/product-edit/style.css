@@ -1,0 +1,74 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px;
+}
+
+.form__header {
+  color: rgb(31, 92, 224);
+  font-size: 50px;
+  padding-bottom: 32px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  gap: 32px;
+  border: 1px solid #ddd;
+  width: 720px;
+  max-width: 100%;
+}
+.form__title {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 4px;
+  border-bottom: 1px solid #ddd;
+}
+.form__content {
+  display: grid;
+  gap: 16px;
+}
+.form__product {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.form__field {
+  display: flex;
+  flex-direction: column;
+}
+.form__description {
+  display: flex;
+  flex-direction: column;
+}
+.form__label {
+  font-size: 14px;
+}
+.form__input {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+.form__button {
+  background-color: blue;
+  border-radius: 10px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+}
+.form__button1 {
+  background-color: red;
+  border-radius: 10px;
+  height: 40px;
+  color: rgb(255, 255, 255);
+}
+.form__description_info {
+  font-size: 12px;
+  color: rgb(76, 78, 78);
+}
+
+/*# sourceMappingURL=style.css.map */

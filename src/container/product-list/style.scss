@@ -1,2 +1,83 @@
 @use '../../lib/service.scss' as s;
 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+ .main {
+    display: flex;
+    flex-direction: column;
+    
+    padding: s.space(8);
+ }
+
+ .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &__title {
+        font-size: 24px;
+        color: s.color(blue);
+    }
+
+    &__click {
+        text-decoration:none;
+        background-color: s.color(blue);
+        border: 1px solid s.color(blue);
+        padding: 4px;
+        border-radius: 8px;
+        color: white
+
+    }
+
+    &__click:hover {
+        background-color: white;
+        color: s.color(blue);
+        border-radius: 1px solid s.color(blue);
+    }
+ }
+
+ .form {
+    display: grid;
+    &__title {
+        font-size: 20px;
+    }
+
+    &__description {
+        font-size: 16px;
+    }
+
+    &__id {
+        font-size: 16px;
+        color: gray;
+    }
+
+    
+
+    &__list {
+        display: grid;
+        grid-template-columns: repeat(3,1fr);
+        grid-template-rows: repeat(3,1fr);
+        
+        gap: 8px;
+    }
+
+    &__element {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        
+        border: 1px solid gray;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 10px;
+
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+ }

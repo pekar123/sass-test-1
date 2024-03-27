@@ -1,0 +1,86 @@
+@use '../../lib/service.scss' as s;
+ 
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+ .main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: s.space(8);
+ }
+
+.form__header {
+    color: s.color(blue);
+    font-size: 50px;
+    padding-bottom: s.space(8);
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    padding: s.space(4);
+    gap: s.space(8);   
+    border: 1px solid s.color('light');
+    width: 720px;
+    max-width: 100%;
+
+    &__title {
+        font-size: 18px;
+        font-weight: bold;
+        padding: s.space(1);
+        border-bottom: 1px solid s.color('light');
+    }
+
+    &__content {
+        display: grid;
+        gap: s.space(4);
+    }
+
+    &__product {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: s.space(4);
+        
+    }
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &__description {
+        display: flex;
+        flex-direction: column;
+        
+    }
+
+    &__label {
+        font-size: 14px;
+    }
+
+    &__input{
+        border: 1px solid s.color('light');
+        padding: s.space(2);
+
+    }
+
+    &__button {
+        background-color: blue;
+        border-radius: 10px;
+        height: 40px;
+        color: rgb(255, 255, 255);
+    }
+    &__button1 {
+        background-color: red;
+        border-radius: 10px;
+        height: 40px;
+        color: rgb(255, 255, 255);
+    }
+
+    &__description_info {
+        font-size: 12px;
+        color: rgb(76, 78, 78);
+    }
+}

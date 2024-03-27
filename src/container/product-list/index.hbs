@@ -3,25 +3,21 @@
 в якому міститься код, котрий буде віддаватися по шляху (PATH) - "/"
  }}
 <main class='main'>
-  <h1 class="title"></h1>
-  <div class="form">
-      <div class="form__list">
-        {{#with data.products}}
-          {{#if isEmply}}
-          <mark>Пустий</mark>
-          {{else}}
-          {{#each list}}
-          <h4 class="form__title">{{name}}</h4>
-        <p class="form__description"></p>
-        <span class="form__id">{{id}}</span>
-        <div class="form__footer">
-          <p class="form__price">{{price}}</p>
-          <p class="form__edit">Редагувати</p>
-        </div>
-          {{/eaach}}
-        {{/if}}
-        {{/with}}
-      </div>
+  <div class='header'>
+    <div>
+      <h1 class='header__title'>Список товарів</h1>
+    </div>
+    <div>
+      <a
+        href='/product-create'
+        class='header__click'
+      >Назад</a>
+    </div>
+  </div>
+  <div class='form'>
+    <div class='form__list'>
+      {{>product-card}}
+    </div>
   </div>
 
 </main>

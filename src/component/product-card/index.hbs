@@ -1,0 +1,17 @@
+{{#with data.products}}
+  {{#if isEmply}}
+    <mark>Пустий</mark>
+  {{else}}
+    {{#each list}}
+      <div class='form__element'>
+        <h4 class='form__title'>{{name}}</h4>
+        <p class='form__description'>{{description}}</p>
+        <span class='form__id'>{{id}}</span>
+        <div class='form__footer'>
+          <p class='form__price'>{{price}}$</p>
+          <a href="product-edit?id={{id}}" class='form__edit'>Редагувати</a>
+        </div>
+      </div>
+    {{/each}}
+  {{/if}}
+{{/with}}
