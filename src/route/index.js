@@ -31,12 +31,23 @@ class Product {
     //Оновлює властивості аргументу data в об’єкт товару, який був знайдений по ID. Можна оновлювати price, name, description
     static updateById = (id, data) => {
       const product = this.getById(id)
+      const {name,price,description} = data
 
-      if(product){
-        this.update(product,data)
-        return true;
+      if(product) {
+        if(name) {
+          product.name = name
+        }
+
+        if(price) {
+          product.price = price
+        }
+
+        if(description) {
+          product.description = description
+        }
+        return true
       }else{
-        return false;
+        return false
       }
     }
     //Видаляє товар по його ID зі списку створених товарів
@@ -131,13 +142,11 @@ router.get('/product-list', function (req, res) {
 
 router.get('/product-edit', function (req, res) {
   const {id} = req.query
-
-  const product = Product.deleteById(Number(id))
+  //за допомогою id вам потрібно отримати об’єкт сутності
+  //product з таким id
+  const product = Product.getById(Number(id))
   console.log(product)
-  
-  res.render('product-edit', {
-    style: 'product-edit',
-  })
+
   if (product) {
     // ↙️ cюди вводимо назву файлу з сontainer
     return res.render('product-edit', {
@@ -163,12 +172,44 @@ router.get('/product-edit', function (req, res) {
 router.post('/product-edit', function (req, res) {
   const {name, price, description,id} = req.body
 
-  Product.deleteById(Number(id))
-
-  res.render('product-edit', {
-    style: 'product-edit',
+  const product = Product.updateById(Number(id),{
+    name,
+    price,
+    description,
   })
+  console.log(id)
+  console.log(product)
+
+  if(product) {
+    res.render('product-alert', {
+      style: 'product-alert',
+      info: 'Інформація про товар оновлена',
+    })
+  }else{
+    res.render('product-alert', {
+      style: 'product-alert',
+      info: 'Сталася помилка',
+  })
+  }
+  
   // ↑↑ сюди вводимо JSON дані
+})
+
+router.get('/product-delete', function (req, res) {
+  const {id} = req.query
+  //за допомогою id вам потрібно отримати об’єкт сутності
+  //product з таким id
+  const product = Product.deleteById(Number(id))
+  console.log(product)
+
+  // ↙️ cюди вводимо назву файлу з сontainer
+    return res.render('product-alert', {
+      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+      style: 'product-alert',
+      info: 'Видалений'
+
+    })
+ 
 })
 
 // ================================================================

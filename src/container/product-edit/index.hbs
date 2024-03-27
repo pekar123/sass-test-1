@@ -8,6 +8,7 @@
 
     <div class='form'>
       <h3 class='form__title'>Інформація про товар</h3>
+      {{#with data}}
       <form method='POST' action='/product-edit'>
 
         <div class='form__content'>
@@ -20,6 +21,7 @@
                 type='name'
                 name='name'
                 class='form__input'
+                value="{{name}}"
               />
             </div>
 
@@ -27,11 +29,13 @@
               <label
                 for='price'
                 class='form__label'
+                
               >Ціна:</label>
               <input
                 type='price'
                 name='price'
                 class='form__input'
+                value="{{price}}"
               />
             </div>
 
@@ -44,6 +48,7 @@
                 type='id'
                 name='id'
                 class='form__input'
+                value="{{id}}"
               />
             </div>
 
@@ -56,6 +61,7 @@
               type='description'
               name='description'
               class='form__input'
+              value="{{description}}"
             />
             <p class='form__description_info'>Відображення у
               картці товару</p>
@@ -64,12 +70,13 @@
 
           
 
-          <button href="/product-alert" class='form__button'>Зберегти оновлення</button>
-          <button href="product-delete" class='form__button1'>Видалити товар</button>
-          <a href="/product-create">Назад</a>
+          <button class='form__button'>Зберегти оновлення</button>
+          <a href="product-delete?id={{id}}" class='form__button1'>Видалити товар</a>
+          <a href="/product-list">Назад</a>
         </div>
 
       </form>
+      {{/with}}
     </div>
   </section>
 </main>
