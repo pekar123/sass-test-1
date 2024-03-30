@@ -1,0 +1,29 @@
+.card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px black;
+  background-color: white;
+}
+.card__header {
+  flex-grow: 1;
+}
+.card__title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+.card__subtitle {
+  font-size: 18px;
+  margin-top: 8px;
+  color: #666666;
+}
+.card__button {
+  border: 1px solid #ddd;
+  padding: 8px;
+  border-radius: 20px;
+}
+
+/*# sourceMappingURL=style.css.map */
