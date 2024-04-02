@@ -63,6 +63,7 @@ class Product {
     }
 }
 
+
 router.get('/product-create', function (req, res) {
 
   res.render('product-create', {
@@ -104,8 +105,8 @@ router.get('/product-list', function (req, res) {
   // res.render генерує нам HTML сторінку
   const list = Product.getList()
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('/', {
-    style: '/',
+  res.render('product-list', {
+    style: 'product-list',
     
 
     data: {
