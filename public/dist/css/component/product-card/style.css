@@ -1,0 +1,33 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.form {
+  display: grid;
+}
+.form__title {
+  font-size: 20px;
+}
+.form__description {
+  font-size: 16px;
+}
+.form__id {
+  font-size: 16px;
+  color: gray;
+}
+.form__element {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  border: 1px solid gray;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+}
+.form__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+/*# sourceMappingURL=style.css.map */

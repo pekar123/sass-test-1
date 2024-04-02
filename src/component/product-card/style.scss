@@ -1,0 +1,42 @@
+@use '../../lib/service.scss' as s;
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+ .form {
+    display: grid;
+    &__title {
+        font-size: 20px;
+    }
+
+    &__description {
+        font-size: 16px;
+    }
+
+    &__id {
+        font-size: 16px;
+        color: gray;
+    }
+
+    
+
+    &__element {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        
+        border: 1px solid gray;
+        gap: 8px;
+        padding: 8px;
+        border-radius: 10px;
+
+    }
+
+    &__footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 8px;
+    }
+ }
