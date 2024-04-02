@@ -63,24 +63,6 @@ class Product {
     }
 }
 
-router.get('/', function (req, res) {
-  // res.render генерує нам HTML сторінку
-
-  // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('index', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: 'index',
-
-    data: {
-      products: {
-        list,
-        isEmpty: list.length === 0,
-      },
-    },
-  })
-  // ↑↑ сюди вводимо JSON дані
-})
-
 router.get('/product-create', function (req, res) {
 
   res.render('product-create', {
@@ -122,8 +104,8 @@ router.get('/product-list', function (req, res) {
   // res.render генерує нам HTML сторінку
   const list = Product.getList()
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('product-list', {
-    style: 'product-list',
+  res.render('/', {
+    style: '/',
     
 
     data: {
