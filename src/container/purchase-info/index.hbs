@@ -1,0 +1,78 @@
+<main class="main">
+	{{> heading title="Інформація про замовлення"}}
+<section class="purchase-info">
+
+	<form action="/purchase-change?id={{id}}" method="GET">
+	 {{#with data.purchases}}
+	 {{#each info}}
+	
+	
+		<div class='purchase-item'>
+			<div class='purchase-item__block_id'>
+				<p class='title'>ID: {{id}}</p>
+			</div>
+
+			<div class='purchase-item__block_info-user'>
+				<p class='title'>І'мя</p>
+				<p class='text'>{{firstname}}</p>
+			</div>
+
+			<div class='purchase-item__block_info-user'>
+				<div>
+				<p class='title'>Прізвище</p>
+				<p class='text'>{{lastname}} </p>
+				</div>
+			</div>
+
+			<div class='purchase-item__block_info-user'>
+				<p class='title'>Телефон</p>
+				<p class='text'>{{phone}} </p>
+			</div>
+
+			<div class='purchase-item__block_info-user'>
+				<p class='title'>Електрона пошта</p>
+				<p class='text'>{{email}} </p>
+			</div>
+
+			<div class='purchase-item__block_product'>
+				<div class="purchase-item__block_product_user">
+					<p class='title'>Назва товару</p>
+			    	<p class='text'>{{title}}</p>
+				</div>
+
+				<div class="purchase-item__block_product_user">
+					<p class='title'>Коментар</p>
+				    <p class='text'>{{comment}}грн</p>
+				</div>
+			</div>
+
+			<div class='purchase-item__block_price'>
+				<p class='title'>Вартість товару</p>
+				<p class='text'>{{productPrice}} грн</p>
+			</div>
+			<div class='purchase-item__block_price'>
+				<p class='title'>Вартість доставки</p>
+				<p class='text'>{{deliveryPrice}} грн</p>
+			</div>
+			<div class='purchase-item__block_price'>
+				<p class='title'>Сума доставки</p>
+				<p class='text'>{{totalPrice}} грн</p>
+			</div>
+			<div class='purchase-item__block_price'>
+				<p class='title'>Нараховані Бонуси</p>
+				<p class='text'>{{bonus}} грн</p>
+			</div>
+		</div>
+
+	    {{> dvider}}
+		<a href="/purchase-change">
+		 {{>button text="Змінити дані" }}
+		 </a>
+		{{/each}}
+		
+		{{/with}}
+
+	</form>
+	
+</section>
+</main>

@@ -147,7 +147,31 @@ class Purchase {
   }
 
   static getList = () => {
-    return Purchase.#list.reverse()
+    return Purchase.#list.reverse().map((purchase) => ({
+      id: purchase.id,
+      product: purchase.product.title,
+      totalPrice: purchase.totalPrice,
+      bonus: Purchase.calcBonusAmount(purchase.totalPrice),
+    }))
+  }
+
+  static getListInfo = () => {
+    return Purchase.#list.reverse().map((purchase) => ({
+      id: purchase.id,
+
+      firstname: purchase.firstname,
+      lastname: purchase.lastname,
+      phone: purchase.phone,
+      email: purchase.email,
+
+      product: purchase.product.title,
+      comment: purchase.comment,
+      
+      productPrice: purchase.productPrice,
+      deliveryPrice: purchase.deliveryPrice,
+      totalPrice: purchase.totalPrice,
+      bonus: Purchase.calcBonusAmount(purchase.totalPrice),
+    }))
   }
 
   static getById = (id) => {
@@ -360,7 +384,8 @@ router.post('/purchase-submit', function (req, res) {
     isNaN(deliveryPrice) ||
     isNaN(amount) ||
     isNaN(bonus) 
-  ) {
+  ) 
+  {
     return res.render('alert', {
       // вказуємо назву папки контейнера, в якій знаходяться наші стилі
       style: 'alert',
@@ -441,6 +466,70 @@ router.post('/purchase-submit', function (req, res) {
       link: `/purchase-list`,
     },
   })
+})
+
+router.get('/purchase-list', function (req, res) {
+  // res.render генерує нам HTML сторінку
+  // console.log(bonus)
+
+  const list = Purchase.getList()
+  console.log('purchase-list:', list)
+
+  // ↙️ cюди вводимо назву файлу з сontainer
+  res.render('purchase-list', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'purchase-list',
+
+    data: {
+      purchases: {
+        list,
+      },
+    },
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+router.get('/purchase-info', function (req, res) {
+  // res.render генерує нам HTML сторінку
+  // console.log(bonus)
+  const id = Number(req.query.id)
+  const info = Purchase.getListInfo(id)
+  console.log('purchase-info:', info)
+
+  // ↙️ cюди вводимо назву файлу з сontainer
+  res.render('purchase-info', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'purchase-info',
+
+    data: {
+      purchases: {
+        info,
+      },
+    },
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+router.get('/purchase-change', function (req, res) {
+  // res.render генерує нам HTML сторінку
+  // console.log(bonus)
+  const id = Number(req.query.id)
+  
+  const list = Purchase.getList(id)
+  console.log('purchase-change:', list)
+
+  // ↙️ cюди вводимо назву файлу з сontainer
+  res.render('purchase-change', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'purchase-change',
+
+    data: {
+      purchases: {
+        list,
+      },
+    },
+  })
+  // ↑↑ сюди вводимо JSON дані
 })
 
 
