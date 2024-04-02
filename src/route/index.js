@@ -108,13 +108,22 @@ router.get('/product-list', function (req, res) {
   res.render('product-list', {
     style: 'product-list',
     
-
     data: {
       products: {
         list,
         isEmpty: list.length === 0,
       },
     },
+
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+router.get('/', function (req, res) {
+  // res.render генерує нам HTML сторінку
+  // ↙️ cюди вводимо назву файлу з сontainer
+  res.render('product-create', {
+    style: 'product-create',
 
   })
   // ↑↑ сюди вводимо JSON дані
@@ -159,6 +168,7 @@ router.post('/product-edit', function (req, res) {
   })
   console.log(id)
   console.log(product)
+  
 
   if(product) {
     res.render('product-alert', {
