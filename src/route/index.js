@@ -122,8 +122,9 @@ router.get('/product-list', function (req, res) {
 router.get('/', function (req, res) {
   // res.render генерує нам HTML сторінку
   // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('product-create', {
-    style: 'product-create',
+  res.render('product-list', {
+    style: 'product-list',
+
 
   })
   // ↑↑ сюди вводимо JSON дані
