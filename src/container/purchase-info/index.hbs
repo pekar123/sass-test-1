@@ -1,12 +1,10 @@
 <main class="main">
 	{{> heading title="Інформація про замовлення"}}
-<section class="purchase-info">
+	<section class="purchase-info">
 
-	<form action="/purchase-info?id={{id}}" method="GET">
-	 {{#with data.purchases}}
-	 {{#each info}}
-	
-	
+		{{#with data.purchases}}
+		{{#each info}}
+
 		<div class='purchase-item'>
 			<div class='purchase-item__block_id'>
 				<p class='title'>ID: {{id}}</p>
@@ -19,8 +17,8 @@
 
 			<div class='purchase-item__block_info-user'>
 				<div>
-				<p class='title'>Прізвище</p>
-				<p class='text'>{{lastname}} </p>
+					<p class='title'>Прізвище</p>
+					<p class='text'>{{lastname}} </p>
 				</div>
 			</div>
 
@@ -37,12 +35,12 @@
 			<div class='purchase-item__block_product'>
 				<div class="purchase-item__block_product_user">
 					<p class='title'>Назва товару</p>
-			    	<p class='text'>{{title}}</p>
+					<p class='text'>{{title}}</p>
 				</div>
 
 				<div class="purchase-item__block_product_user">
 					<p class='title'>Коментар</p>
-				    <p class='text'>{{comment}}грн</p>
+					<p class='text'>{{comment}}грн</p>
 				</div>
 			</div>
 
@@ -64,15 +62,11 @@
 			</div>
 		</div>
 
-	    {{> dvider}}
-		<a href="/purchase-change">
-		 {{>button text="Змінити дані" }}
-		 </a>
+		{{> dvider}}
+		<a href="/purchase-change?id={{id}}">
+			{{>button text="Змінити дані" }}
+		</a>
 		{{/each}}
-		
 		{{/with}}
-
-	</form>
-	
-</section>
+	</section>
 </main>

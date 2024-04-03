@@ -178,7 +178,7 @@ class Purchase {
     return Purchase.#list.find((item)=> item.id === id)
   }
 
- static updateById = (id,data) => {
+ static updateByPurchaseId = (id,data) => {
    const purchase = this.getById(id)
    const {firstname,lastname,email,phone} = data
 
@@ -536,27 +536,6 @@ router.get('/purchase-info', function (req, res) {
   // ↑↑ сюди вводимо JSON дані
 })
 
-router.get('/purchase-change', function (req, res) {
-  // res.render генерує нам HTML сторінку
-  // console.log(bonus)
-  const id = Number(req.query.id)
-  
-  const list = Purchase.getList(id)
-  console.log('purchase-change:', list)
-
-  // ↙️ cюди вводимо назву файлу з сontainer
-  res.render('purchase-change', {
-    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-    style: 'purchase-change',
-
-    data: {
-      purchases: {
-        list,
-      },
-    },
-  })
-  // ↑↑ сюди вводимо JSON дані
-})
 
 router.get('/purchase-change', function (req, res) {
   const {id} = req.query
@@ -590,7 +569,7 @@ router.get('/purchase-change', function (req, res) {
 router.post('/purchase-change', function (req, res) {
  const {id,firstname,lastname,email,phone,}= req.body;
 
- const purchase = Purchase.updateById(Number(id), {
+ const purchase = Purchase.updateByPurchaseId(Number(id), {
   firstname,
   lastname,
   email,

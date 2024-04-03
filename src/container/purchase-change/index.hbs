@@ -1,23 +1,21 @@
 <main class="main">
 	{{#with data}}
 	<form action="/purchase-change?id={{id}}" method="POST" class="form-card">
-	{{>heading title="Змінити данні"}}
-
 
 	{{>dvider}}
 
-	{{>heading title="Оформлення замовлення"}}
+	{{>heading title="Змінити Дані"}}
 
-	{{>field label="Ім'я" name="{{firstname}}" value="" }}
+	{{>field label="Ім'я" name="firstname" value=firstname }}
 
-	{{>field label="Прізвище" name="lastname" }}
+	{{>field label="Прізвище" name="lastname" value=lastname }}
 	
-	{{>field label="Телефон" name="phone" }}
+	{{>field label="Телефон" name="phone" value=email}}
 	
-	{{>field label="Пошта" name="email" }}
+	{{>field label="Пошта" name="email" value=phone}}
 
 
-	{{>button text="Оформлення замовлення"}}
+	{{>button text="Зберегти змінити"}}
 	{{/with}}
 	</form>
 </main>
