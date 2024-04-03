@@ -178,6 +178,32 @@ class Purchase {
     return Purchase.#list.find((item)=> item.id === id)
   }
 
+ static updateById = (id,data) => {
+   const purchase = this.getById(id)
+   const {firstname,lastname,email,phone} = data
+
+   if(purchase) {
+    if(firstname) {
+      purchase.firstname = firstname
+    }
+
+    if(lastname) {
+      purchase.lastname = lastname
+    }
+
+    if(email) {
+      purchase.email = email
+    }
+
+    if(phone) {
+      purchase.phone = phone
+    }
+    return true
+   }else{
+    return false
+   }
+ }
+
   static updateById = (id,data) => {
     const purchase = Purchase.getById(id)
 
@@ -529,6 +555,75 @@ router.get('/purchase-change', function (req, res) {
       },
     },
   })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+router.get('/purchase-change', function (req, res) {
+  const {id} = req.query
+  //за допомогою id вам потрібно отримати об’єкт сутності
+  //product з таким id
+  const purchase = Purchase.getById(Number(id))
+  console.log(purchase)
+
+  if (purchase) {
+    // ↙️ cюди вводимо назву файлу з сontainer
+    return res.render('purchase-change', {
+      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+      style: 'purchase-change',
+
+      data: {
+        firstname: purchase.firstname,
+        lastname: purchase.lastname,
+        email: purchase.email,
+        phone: purchase.phone,
+      },
+    })
+  } else {
+    return res.render('alert', {
+      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+      style: 'alert',
+      info: 'Продукту за таким ID не знайдено',
+    })
+  }
+})
+
+router.post('/purchase-change', function (req, res) {
+ const {id,firstname,lastname,email,phone,}= req.body;
+
+ const purchase = Purchase.updateById(Number(id), {
+  firstname,
+  lastname,
+  email,
+  phone,
+ })
+
+ console.log(id)
+console.log(purchase)
+
+
+
+  // ↙️ cюди вводимо назву файлу з сontainer
+  if(purchase){
+    return res.render('alert', {
+      style: 'alert',
+  
+      data: {
+        message: 'Успішно',
+        info: 'Інформація про товар оновлена',
+        link: `/purchase-list`,
+      },
+    })
+  }else{
+    return res.render('alert', {
+      style: 'alert',
+  
+      data: {
+        message: 'Успішно',
+        info: 'Сталася помилка',
+        link: `/purchase-list`,
+      },
+    })
+  }
   // ↑↑ сюди вводимо JSON дані
 })
 
