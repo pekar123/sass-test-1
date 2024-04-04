@@ -538,68 +538,74 @@ router.get('/purchase-info', function (req, res) {
 
 
 router.get('/purchase-change', function (req, res) {
-  const {id} = req.query
-  //за допомогою id вам потрібно отримати об’єкт сутності
-  //product з таким id
-  const purchase = Purchase.getById(Number(id))
-  console.log(purchase)
-
-  if (purchase) {
-    // ↙️ cюди вводимо назву файлу з сontainer
-    return res.render('purchase-change', {
-      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-      style: 'purchase-change',
-
-      data: {
-        firstname: purchase.firstname,
-        lastname: purchase.lastname,
-        email: purchase.email,
-        phone: purchase.phone,
-      },
+  const id = Number(req.query.id)
+  const purchase = Purchase.getById(id)
+  if (!purchase) {
+    // Якщо товар з таким id не знайдено, відображаємо повідомлення про помилку
+    res.render('alert', {
+      style: 'alert',
+      message: 'Помилка',
+      info: 'Замовлення з таким ID не знайдено',
     })
   } else {
-    return res.render('alert', {
-      // вказуємо назву папки контейнера, в якій знаходяться наші стилі
-      style: 'alert',
-      info: 'Продукту за таким ID не знайдено',
+    // Якщо товар знайдено, передаємо його дані у шаблон product-edit
+    res.render('purchase-change', {
+      style: 'purchase-change',
+      message: 'Зміна данних замовлення',
+      data: {
+        id: purchase.id,
+        firstname: purchase.firstname,
+        lastname: purchase.lastname,
+        phone: purchase.phone,
+        email: purchase.email,
+      },
     })
   }
 })
-
 router.post('/purchase-change', function (req, res) {
- const {id,firstname,lastname,email,phone,}= req.body;
-
- const purchase = Purchase.updateByPurchaseId(Number(id), {
-  firstname,
-  lastname,
-  email,
-  phone,
- })
-
- console.log(id)
-console.log(purchase)
-
-
-
-  // ↙️ cюди вводимо назву файлу з сontainer
-  if(purchase){
-    return res.render('alert', {
-      style: 'alert',
-  
-      data: {
-        message: 'Успішно',
-        info: 'Інформація про товар оновлена',
-        link: `/purchase-list`,
-      },
+  const id = Number(req.query.id)
+  let { firstname, lastname, phone, email } =    req.body
+  const purchase = Purchase.getById(id)
+  console.log(purchase)
+  if (purchase) {
+    const newPurchase = Purchase.updateById(id, {
+      firstname,
+      lastname,
+      phone,
+      email,
     })
-  }else{
-    return res.render('alert', {
+    console.log(newPurchase)
+    // Якщо оновлення вдалося, відображаємо повідомлення про успіх
+    if (newPurchase) {
+      res.render('alert', {
+        style: 'alert',
+        data: {
+          link: '/purchase-list',
+          message: 'Успішне виконання дії',
+          info: 'Товар успішно оновлено',
+        },
+      })
+    } else {
+      // Якщо оновлення не вдалося (наприклад, товару з таким id не існує),
+      // відображаємо повідомлення про помилку
+      res.render('alert', {
+        style: 'alert',
+        data: {
+          link: '/purchase-list',
+          message: 'Помилка',
+          info: 'Не вдалося оновити товар',
+        },
+      })
+    }
+  } else {
+    // Якщо оновлення не вдалося (наприклад, товару з таким id не існує),
+    // відображаємо повідомлення про помилку
+    res.render('alert', {
       style: 'alert',
-  
       data: {
-        message: 'Успішно',
-        info: 'Сталася помилка',
-        link: `/purchase-list`,
+        link: '/purchase-list',
+        message: 'Помилка',
+        info: 'Не вдалося оновити товар',
       },
     })
   }
