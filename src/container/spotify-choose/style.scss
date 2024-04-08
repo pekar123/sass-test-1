@@ -1,15 +1,21 @@
 @use '../../lib/service.scss' as s;
 
-main {
-	display: flex;
-	flex-direction: column;
-	gap: s.space(10);
-	padding: s.space(10);
+@use '../../lib/spotify.scss' as spotify;
+
+
+.choose {
+	display: grid;
+	gap: s.space(6);
 }
 
-.product-list {
-	width: 100%;
+.choose__item {
 	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: s.space(5);
+	grid-template-columns: 56px 1fr;
+	gap: s.space(6);
+}
+
+.choose__content {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 }
