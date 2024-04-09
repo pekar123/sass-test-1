@@ -24,7 +24,7 @@ class Track {
     return this.#list.reverse()
   }
 
-  static getById = (id) => {
+  static getByTrackId = (id) => {
     return this.#list.find((track)=> track.id === id)
   }
 
@@ -32,6 +32,16 @@ class Track {
 
 Track.create (
   'Iнь Ян',
+  'MonatiK i Roxolaba',
+  'https://picsum.photos/100/100',
+)
+Track.create (
+  'Пукі',
+  'MonatiK i Roxolaba',
+  'https://picsum.photos/100/100',
+)
+Track.create (
+  'Лялаа',
   'MonatiK i Roxolaba',
   'https://picsum.photos/100/100',
 )
@@ -246,6 +256,88 @@ router.get('/spotify-playlist-add', function (req, res) {
 
     data: {
       tracks: Track.getList(), 
+    },
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+router.post('/spotify-playlist-add', function (req, res) {
+  const playlistId = Number(req.body.playlistId)
+  const trackId = Number(req.body.trackId)
+
+  const playlist = Playlist.getById(playlistId)
+
+  if (!playlist) {
+    return res.render('alert', {
+      style: 'alert',
+
+      data: {
+        message: 'Помилка',
+        info: 'Такого плейліста не знайдено',
+        link: `/`,
+      },
+    })
+  }
+
+  const trackToAdd = Track.getByTrackId(trackId)
+
+  playlist.tracks.unshift(trackToAdd)
+
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name:playlist.name, 
+    },
+  })
+  // ↑↑ сюди вводимо JSON дані
+})
+
+router.post('/spotify-track-add', function (req, res) {
+  const playlistId = Number(req.body.playlistId)
+  const trackId = Number(req.body.trackId)
+
+  const playlist = Playlist.getById(playlistId)
+
+  if (!playlist) {
+    return res.render('alert', {
+      style: 'alert',
+
+      data: {
+        message: 'Помилка',
+        info: 'Такого плейліста не знайдено',
+        link: `/spotify-playlist?id=${playlistId}`,
+      },
+    })
+  }
+
+  const trackToAdd = Track.getList().find(
+    (track) => track.id === trackId,
+  )
+
+  if(!trackToAdd) {
+    return res.render('alert', {
+      style:'alert',
+      data: {
+        message: 'Помилка',
+        info: 'Такого треку не знайдено',
+        link: `/spotify-track-add?playlistId=${playlistId}`,
+      }
+    })
+  }
+
+  
+  playlist.tracks.push(trackToAdd)
+
+  res.render('spotify-playlist', {
+    style: 'spotify-playlist',
+
+    data: {
+      playlistId: playlist.id,
+      tracks: playlist.tracks,
+      name:playlist.name, 
     },
   })
   // ↑↑ сюди вводимо JSON дані

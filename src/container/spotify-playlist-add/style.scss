@@ -11,3 +11,9 @@
 	color: s.color(light);
 	font-size: 18px;
 }
+
+.field--disabled {
+	position: absolute;
+	display: none;
+
+}
