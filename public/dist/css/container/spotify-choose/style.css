@@ -18,7 +18,7 @@ a:hover {
 
 .main__content {
   width: 100%;
-  max-width: 600px;
+  max-width: 720px;
   display: flex;
   flex-direction: column;
   gap: 60px;
@@ -30,6 +30,10 @@ a:hover {
 
 .title--center {
   text-align: center;
+}
+
+.title--size-medium {
+  font-size: 40px;
 }
 
 .track {
@@ -51,6 +55,35 @@ a:hover {
 .track__name {
   font-size: 24px;
   color: #ddd;
+}
+.track__author {
+  font-size: 16px;
+  color: rgb(90, 90, 90);
+}
+
+.playlist {
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 28px;
+  align-items: center;
+}
+.playlist__list {
+  display: grid;
+  gap: 28px;
+}
+.playlist__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+}
+.playlist__name {
+  font-size: 24px;
+  color: #ddd;
+}
+.playlist__amount {
+  font-size: 16px;
+  color: rgb(90, 90, 90);
 }
 
 .choose {

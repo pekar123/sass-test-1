@@ -86,18 +86,26 @@ a:hover {
   color: rgb(90, 90, 90);
 }
 
-.add-button {
-  display: grid;
-  grid-template-columns: 92px 1fr;
-  align-items: center;
-  gap: 24px;
-  color: #ddd;
-  font-size: 18px;
+.main__header {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
 }
 
-.field--disabled {
-  position: absolute;
-  display: none;
+.main__link {
+  display: flex;
+  gap: 32px;
+}
+
+.play__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+.play__list-box {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

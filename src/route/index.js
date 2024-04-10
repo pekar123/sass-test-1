@@ -69,8 +69,10 @@ class Playlist{
   constructor (name) {
     this.id = Math.floor(1000 * Math.random() * 9000)
     this.name = name
-    this.tracks = []
+    this.tracks = [] //кількість пісень в альбомі tracks.length
+    this.img = 'https://picsum.photos/345/345'
   }
+  //це наший контейнер із плейлістами
 
   static create(name) {
     const newPlaylist = new Playlist(name)
@@ -92,6 +94,7 @@ class Playlist{
       playlist.tracks.push(...randomTracks)
   }
 
+
   static getById(id) {
     return (
       Playlist.#list.find(
@@ -105,15 +108,44 @@ class Playlist{
       (track) => track.id !== trackId,
     )
   }
+
+  static findListByValue(name) {
+    return this.#list.filter((playlist) =>
+    playlist.name
+      .toLowerCase()
+      .includes(name.toLowerCase()),
+  )
+  }
 }
 
+Playlist.makeMix(Playlist.create('Test'))
+Playlist.makeMix(Playlist.create('Test2'))
+Playlist.makeMix(Playlist.create('Test3'))
+
 // ================================================================
-router.get('/', function (req, res) {
+router.get('/spotify-choose', function (req, res) {
   res.render('spotify-choose', {
     // вказуємо назву папки контейнера, в якій знаходяться наші стилі
     style: 'spotify-choose',
 
     data: {
+    },
+  })
+})
+
+router.get('/', function (req, res) {
+
+  const playlist = Playlist.getList()
+  
+
+  res.render('spotify-libary', {
+    // вказуємо назву папки контейнера, в якій знаходяться наші стилі
+    style: 'spotify-libary',
+
+    data: {
+      title:'Моя бібліотека',
+      playlist,
+      
     },
   })
 })
@@ -256,6 +288,7 @@ router.get('/spotify-playlist-add', function (req, res) {
 
     data: {
       tracks: Track.getList(), 
+      playlistId,
     },
   })
   // ↑↑ сюди вводимо JSON дані
@@ -341,6 +374,44 @@ router.post('/spotify-track-add', function (req, res) {
     },
   })
   // ↑↑ сюди вводимо JSON дані
+})
+
+router.get('/spotify-search', function (req, res) {
+  const value = ''
+
+  const list = Playlist.findListByValue(value)
+
+  res.render('spotify-search', {
+    style: 'spotify-search',
+
+    data: {
+      list:list.map(({tracks, ...rest}) =>({
+        ...rest,
+        amount:tracks.length,
+      })),
+      value,
+    },
+  })
+})
+
+router.post('/spotify-search', function (req, res) {
+  const value = req.body.value || ''
+
+  const list = Playlist.findListByValue(value)
+
+  console.log(value)
+
+  res.render('spotify-search', {
+    style: 'spotify-search',
+
+    data: {
+      list:list.map(({tracks, ...rest}) =>({
+        ...rest,
+        amount:tracks.length,
+      })),
+      value,
+    },
+  })
 })
 // ================================================================
 

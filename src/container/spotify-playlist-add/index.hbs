@@ -13,8 +13,8 @@
               <em class='track__author'>{{author}}</em>
             </div>
 			        <form action="/spotify-track-add" method="post">
-              <input type="hidden" name="playlistId" value="{{playlistId}}">
-              <input type="hidden" name="trackId" value="{{trackId}}">
+              <input type="hidden" name="playlistId" value="{{../playlistId}}">
+              <input type="hidden" name="trackId" value="{{id}}">
               <button type="submit">
                 <img src='/svg/add_button-1.svg' />
               </button>

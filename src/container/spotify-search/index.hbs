@@ -1,0 +1,29 @@
+<main class="main">
+	
+	{{#with data}}
+	<div class="main__content">
+		
+		<h1 class="title title--center title--size-medium">Пошук пісень</h1>
+		 
+		 <form method="POST" action="/spotify-search" class="search">
+			<img src="svg/search-btn-gray.svg" alt="search">
+			<input type="search" class="search__input" placeholder="Ведіть запит" name="value" value="{{value}}">
+			<button class="search__button">Пошук </button>
+		 </form>
+
+		<ul class="playlist__list">
+			{{#each list}}
+			<li class="playlist">
+				<img src="{{img}}" alt="{{name}}" height="100px">
+				<div class="playlist__content">
+					<strong class="track__name">{{name}}</strong>
+					<em class="track__author">Кількість пісень:{{amount}}</em>
+				</div>
+				</a>
+			</li>
+			{{/each}}
+		</ul>
+       
+	</div>
+	{{/with}}
+</main>
